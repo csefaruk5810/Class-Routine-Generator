@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "class-routine-backend"
+version = "0.1.0"
+description = "Backend and scheduler for the Automated Class Routine Generator"
+requires-python = ">=3.12"
+dependencies = [
+  "Django>=5.2,<6.0",
+  "djangorestframework>=3.16,<4.0",
+  "djangorestframework-simplejwt>=5.5,<6.0",
+  "django-cors-headers>=4.7,<5.0",
+  "dj-database-url>=3.0,<4.0",
+  "psycopg[binary]>=3.2,<4.0",
+  "pydantic>=2.11,<3.0",
+  "ortools>=9.14,<10.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.4,<9.0",
+  "pytest-django>=4.11,<5.0",
+  "ruff>=0.12,<1.0",
+]
+
+[tool.setuptools]
+packages = [
+  "config",
+  "config.settings",
+  "apps",
+  "apps.accounts",
+  "apps.academics",
+  "apps.resources",
+  "apps.routines",
+  "apps.imports",
+  "apps.common",
+  "scheduler",
+  "scheduler.domain",
+  "scheduler.constraints",
+  "scheduler.objective",
+  "scheduler.solver",
+  "scheduler.validation",
+  "scheduler.importers",
+  "scheduler.diagnostics",
+  "scheduler.services",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.base"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+
